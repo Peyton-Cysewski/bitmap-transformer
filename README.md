@@ -1,6 +1,6 @@
-# Console Application Bitmap Transformer
+# Console Application: Bitmap Transformer
 
-*Author: Peyton Cysewski, Leah Russo*
+*Authors: Peyton Cysewski, Leah Russo*
 
 ----
 
