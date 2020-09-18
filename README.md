@@ -23,7 +23,7 @@ $ git clone https://github.com/Peyton-Cysewski/bitmap-transformer.git
 ### To run the program from the Command Line:
 Enter into the correct root level directory once the repo has been cloned.
 
-Enter the command: ``./gradlew run --args "<input/file/path.bmp> <output/file/path.bmp> <transform command>"` where:
+Enter the command: ``./gradlew run --args "<input/file/path.bmp> <output/file/path.bmp> <transform command>"`` where:
 - The input path is the path (absolute or relative) to a bitmap image file that will be copied and transformed.
 - The output path is the path (absolute or relative) to where the transformed bitmap image will be written to (this includes the file name of your choice).
 - The transform command will be one of four: `"mirrorHorizontal"`, `"grayscale"`, `"randomize"`, or `"deepfry"`.
