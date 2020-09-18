@@ -25,10 +25,12 @@ public class App {
                 case "mirrorHorizontal":
 //                    bitmap.mirrorHorizontal();
                     break;
+                case "deepfry":
+                    bitmap.deepfry();
                 default:
                     break;
             }
-//            bitmap.output(outputPath);
+            bitmap.output(outputPath);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
