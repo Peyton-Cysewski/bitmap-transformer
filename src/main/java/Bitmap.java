@@ -1,7 +1,5 @@
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.awt.image.ColorModel;
-import java.awt.image.WritableRaster;
 import java.io.File;
 
 public class Bitmap {
@@ -12,42 +10,76 @@ public class Bitmap {
     }
 
     public void randomize() {
-
         int height = this.image.getHeight();
         int width = this.image.getWidth();
         for (int h = 0; h < height; h++) {
             for (int w = 0; w < width; w++) {
-//                this.image.setRGB(w, h, 0);
-                int rgb = this.image.getRGB(w, h);
-                int red = (rgb >> 16 ) & 0x000000FF;
-                int green = (rgb >> 8 ) & 0x000000FF;
-                int blue = (rgb) & 0x000000FF;
-
-                int gray = (red + green + blue) / 3;
-                gray = (gray * 1_000_000) + (gray * 1_000) + gray;
-                this.image.setRGB(w, h, gray); // 255_255_255 150_150_150
+                int red = (int)(Math.random() * 256);
+                int green = (int)(Math.random() * 256);
+                int blue = (int)(Math.random() * 256);
+                int rando = (red << 16) + (green << 8) + blue;
+                this.image.setRGB(w, h, rando);
             }
         }
     }
 
+    public void rotate() {
+        int height = this.image.getHeight();
+        int width = this.image.getWidth();
+        for (int h = 0; h < height; h++) {
+            for (int w = 0; w < width; w++) {
+
+//                this.image.setRGB(w, h, );
+            }
+        }
+    }
+
+    public void mirrorHorizontal() {
+        int height = this.image.getHeight();
+        int width = this.image.getWidth();
+        for (int h = 0; h < height; h++) {
+            for (int w = 0; w < width / 2; w++) {
+                int oppoW = width - w - 1;
+                int currRGB = this.image.getRGB(w, h);
+                int oppoRGB = this.image.getRGB(oppoW, h);
+                this.image.setRGB(w, h, oppoRGB);
+                this.image.setRGB(oppoW, h, currRGB);
+            }
+        }
+    }
+
+    public void grayscale() {
+        int height = this.image.getHeight();
+        int width = this.image.getWidth();
+        for (int h = 0; h < height; h++) {
+            for (int w = 0; w < width; w++) {
+                int rgb = this.image.getRGB(w, h);
+                int red = (rgb >> 16) & 0x000000FF;
+                int green = (rgb >> 8) & 0x000000FF;
+                int blue = (rgb) & 0x000000FF;
+
+                int gray = (red + green + blue) / 3;
+                gray = (gray << 16) + (gray << 8) + gray;
+                this.image.setRGB(w, h, gray);
+            }
+        }
+    }
 
     public void deepfry() {
         int height = this.image.getHeight();
         int width = this.image.getWidth();
         for (int h = 0; h < height; h++) {
             for (int w = 0; w < width; w++) {
-//                this.image.setRGB(w, h, 0);
                 int rgb = this.image.getRGB(w, h);
                 int red = (rgb >> 16 ) & 0x000000FF;
                 int green = (rgb >> 8 ) & 0x000000FF;
                 int blue = (rgb) & 0x000000FF;
 
-                int gray = (red + green + blue) / 3;
-                gray = (gray * 1_000_000) + (gray * 1_000) + gray;
-                this.image.setRGB(w, h, gray); // 255_255_255 150_150_150
+                int fry = (red + green + blue) / 3;
+                fry = (fry * 1_000_000) + (fry * 1_000) + fry;
+                this.image.setRGB(w, h, fry);
             }
         }
-//        this.image = newFile;
     }
 
     public void output(String outputPath) {
@@ -55,8 +87,7 @@ public class Bitmap {
         try {
             ImageIO.write(this.image, "bmp", output);
         } catch (Exception e) {
-
+            System.out.println(e.getMessage());
         }
     }
-
 }

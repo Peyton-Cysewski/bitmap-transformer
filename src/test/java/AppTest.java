@@ -14,14 +14,27 @@ import static org.junit.Assert.*;
 public class AppTest {
     @Test public void testCanReadBitmapFile() throws IOException {
         BufferedImage file = ImageIO.read(new File("src/main/resources/mario.bmp"));
-//        Bitmap bitmap = new Bitmap(file);
-//        assertNotNull("bitmap is not null", bitmap);
-        File output = new File("src/main/resources/mario2.bmp");
+        File output = new File("src/main/resources/test.bmp");
         ImageIO.write(file, "bmp", output);
     }
 
-    @Test public void testAppWorks() {
+    @Test public void testDeepfryWorks() {
         App app = new App();
-        app.main(new String[]{"src/main/resources/mario.bmp", "src/main/resources/mario4.bmp", "stuff"});
+        app.main(new String[]{"src/main/resources/mario.bmp", "src/main/resources/deepfry.bmp", "deepfry"});
+    }
+
+    @Test public void testMirrorHorizontalWorks() {
+        App app = new App();
+        app.main(new String[]{"src/main/resources/mario.bmp", "src/main/resources/mirror.bmp", "mirrorHorizontal"});
+    }
+
+    @Test public void testRandomizeWorks() {
+        App app = new App();
+        app.main(new String[]{"src/main/resources/mario.bmp", "src/main/resources/random.bmp", "randomize"});
+    }
+
+    @Test public void testGrayscaleWorks() {
+        App app = new App();
+        app.main(new String[]{"src/main/resources/mario.bmp", "src/main/resources/grayscale.bmp", "grayscale"});
     }
 }

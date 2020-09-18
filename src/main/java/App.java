@@ -1,3 +1,4 @@
+import com.sun.javafx.binding.StringFormatter;
 import jdk.jfr.events.ExceptionThrownEvent;
 
 import javax.imageio.ImageIO;
@@ -9,30 +10,43 @@ import java.io.File;
  */
 public class App {
     public static void main(String[] args) {
+        String inputPath = args[0];
+        String outputPath = args[1];
+        String transform = args[2];
+        BufferedImage file = null;
         try {
-            String inputPath = args[0];
-            String outputPath = args[1];
-            String transform = args[2];
-            BufferedImage file = ImageIO.read(new File(inputPath));
-            Bitmap bitmap = new Bitmap(file);
-            switch (transform) {
-                case "randomize":
-                    bitmap.randomize();
-                    break;
-                case "rotate":
-//                    bitmap.rotate();
-                    break;
-                case "mirrorHorizontal":
-//                    bitmap.mirrorHorizontal();
-                    break;
-                case "deepfry":
-                    bitmap.deepfry();
-                default:
-                    break;
-            }
-            bitmap.output(outputPath);
+            System.out.println("Reading in the file...");
+            file = ImageIO.read(new File(inputPath));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
+        Bitmap bitmap = new Bitmap(file);
+        switch (transform) {
+            case "randomize":
+                System.out.println("Performing transform \"" + transform + "\" on file.");
+                bitmap.randomize();
+                break;
+            case "rotate":
+                System.out.println("Performing transform \"" + transform + "\" on file.");
+//                    bitmap.rotate();
+                break;
+            case "mirrorHorizontal":
+                System.out.println("Performing transform \"" + transform + "\" on file.");
+                bitmap.mirrorHorizontal();
+                break;
+            case "grayscale":
+                System.out.println("Performing transform \"" + transform + "\" on file.");
+                bitmap.grayscale();
+                break;
+            case "deepfry":
+                System.out.println("Performing transform \"" + transform + "\" on file.");
+                bitmap.deepfry();
+                break;
+            default:
+                break;
+        }
+        bitmap.output(outputPath);
+        System.out.println("Transform successfully completed.");
     }
 }
