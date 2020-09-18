@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
 
@@ -15,5 +16,12 @@ public class AppTest {
         BufferedImage file = ImageIO.read(new File("src/main/resources/mario.bmp"));
 //        Bitmap bitmap = new Bitmap(file);
 //        assertNotNull("bitmap is not null", bitmap);
+        File output = new File("src/main/resources/mario2.bmp");
+        ImageIO.write(file, "bmp", output);
+    }
+
+    @Test public void testAppWorks() {
+        App app = new App();
+        app.main(new String[]{"src/main/resources/mario.bmp", "src/main/resources/mario4.bmp", "stuff"});
     }
 }
