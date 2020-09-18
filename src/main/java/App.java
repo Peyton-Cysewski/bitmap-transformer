@@ -16,8 +16,8 @@ public class App {
             BufferedImage file = ImageIO.read(new File(inputPath));
             Bitmap bitmap = new Bitmap(file);
             switch (transform) {
-                case "multiplyHue":
-                    bitmap.multiplyHue();
+                case "randomize":
+                    bitmap.randomize();
                     break;
                 case "rotate":
 //                    bitmap.rotate();
